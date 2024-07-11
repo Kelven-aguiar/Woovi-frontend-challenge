@@ -36,10 +36,7 @@ function RadioGroupExample() {
 	};
 
 	return (
-		<Box
-			sx={{ display: "flex", flexDirection: "column" fontFamily: "Nunito" }}
-	
-		>
+		<Box sx={{ display: "flex", flexDirection: "column" }}>
 			<FormControl component="fieldset">
 				<RadioGroup
 					aria-label="opções"
