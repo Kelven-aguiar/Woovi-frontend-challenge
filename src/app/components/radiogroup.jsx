@@ -9,6 +9,25 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 function RadioGroupExample() {
+	const price = 30500.0; //Variavel que irá armazenar o valor de acordo com o BACKEND
+	//Função para formatar o preço para BRL
+	const formatPrice = (price) => {
+		return price.toLocaleString("pt-BR", {
+			style: "currency",
+			currency: "BRL",
+			minimumFractionDigits: 2,
+		});
+	};
+	const cashback = 300.0; //Variavel que irá armazenar o valor de acordo com o BACKEND
+	// Função para formatar o cashback para BRL
+	const formatCashback = (cashback) => {
+		return cashback.toLocaleString("pt-BR", {
+			style: "currency",
+			currency: "BRL",
+			minimumFractionDigits: 2,
+		});
+	};
+
 	const [value, setValue] = useState("");
 
 	const handleChange = (event) => {
@@ -23,17 +42,47 @@ function RadioGroupExample() {
 					name="opções"
 					value={value}
 					onChange={handleChange}
+					style={{
+						position: "relative",
+						border: `2px solid ${value ? "#03D69D" : "#E5E5E5"}`,
+						borderRadius: "10px",
+						transition: "border-color 0.1s ease",
+						padding: "12px",
+					}}
 				>
 					<FormControlLabel
+						style={{}}
 						value="opcao1"
 						control={
 							<Radio
 								icon={<RadioButtonUncheckedIcon sx={{ opacity: 0.5 }} />}
 								checkedIcon={<CheckCircleIcon style={{ color: "#03D69D" }} />}
+								style={{}}
 							/>
 						}
 						label={
-							<div style={{ display: "flex", flexDirection: "column" }}>
+							<div style={{}}>
+								<span
+									style={{
+										display: "flex",
+										position: "absolute",
+										width: "67px",
+										height: "27px",
+										top: "-15px",
+										left: "12px",
+										fontFamily: "Nunito",
+										fontSize: "18px",
+										fontWeight: "600",
+										lineHeight: "24px",
+										color: "#4D4D4D",
+										backgroundColor: "#E5E5E5",
+										borderRadius: "100px",
+										justifyContent: "center",
+										alignItems: "center",
+									}}
+								>
+									Pix
+								</span>
 								<div>
 									<span
 										style={{
@@ -55,7 +104,8 @@ function RadioGroupExample() {
 											textAlign: "left",
 										}}
 									>
-										R$30.500,00
+										{" "}
+										{formatPrice(price)}
 									</span>
 								</div>
 								<span
@@ -93,7 +143,7 @@ function RadioGroupExample() {
 											color: "#fff",
 										}}
 									>
-										🤑 R$ 300,00 de volta no seu Pix na hora
+										🤑 {formatCashback(cashback)} de volta no seu Pix na hora
 									</span>
 								</div>
 							</div>
