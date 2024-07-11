@@ -7,6 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import Box from "@mui/material/Box";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import blueflag from "../../assets/blueflag.svg";
 
 function RadioGroupExample() {
 	const price = 30500.0; //Variavel que irá armazenar o valor de acordo com o BACKEND
@@ -35,7 +36,10 @@ function RadioGroupExample() {
 	};
 
 	return (
-		<Box sx={{ display: "flex", flexDirection: "column" }}>
+		<Box
+			sx={{ display: "flex", flexDirection: "column" fontFamily: "Nunito" }}
+	
+		>
 			<FormControl component="fieldset">
 				<RadioGroup
 					aria-label="opções"
@@ -122,7 +126,6 @@ function RadioGroupExample() {
 								</span>
 								<div
 									style={{
-										backgroundColor: "#133A6F",
 										width: "387px",
 										height: "33px",
 										position: "relative",
@@ -130,7 +133,9 @@ function RadioGroupExample() {
 										justifyContent: "space-between",
 										alignItems: "center",
 										padding: "0 12px",
-										borderRadius: "4px",
+										backgroundImage: `url(${blueflag.src})`,
+										backgroundSize: "cover",
+										backgroundPosition: "center",
 									}}
 								>
 									<span
@@ -141,6 +146,7 @@ function RadioGroupExample() {
 											lineHeight: "20px",
 											textAlign: "left",
 											color: "#fff",
+											zIndex: 1,
 										}}
 									>
 										🤑 {formatCashback(cashback)} de volta no seu Pix na hora
