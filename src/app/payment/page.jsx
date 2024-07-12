@@ -6,7 +6,7 @@ import copy from "../../assets/copy.svg";
 import checkline from "../../assets/checkline.svg";
 
 export default function Home() {
-	const pixPrice = 15300.0; //Variável que irá armazenar o valor de acordo com o BACKEND ou calculado
+	const pixPrice = 15300.0; // Variável que irá armazenar o valor de acordo com o BACKEND ou calculado
 
 	// Função para formatar para BRL
 	const formatPixPrice = (pixPrice) => {
@@ -18,18 +18,61 @@ export default function Home() {
 	};
 
 	return (
-		<main className="flex flex-col items-center justify-between p-10 max-w-[464px] max-h-[1057px]">
+		<main
+			style={{
+				display: "flex",
+				flexDirection: "column",
+				alignItems: "center",
+				justifyContent: "space-between",
+				padding: "2.5rem",
+				maxWidth: "464px",
+				maxHeight: "1057px",
+			}}
+		>
 			<Image src={wooviLogo} />
-			<div className="w-[421px] h-[66px] items-center flex flex-col ">
-				<span className="text-2xl font-bold leading-[32.74px] text-gray-dark">
+			<div
+				style={{
+					width: "421px",
+					height: "66px",
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+				}}
+			>
+				<span
+					style={{
+						fontSize: "24px",
+						fontWeight: "bold",
+						lineHeight: "32.74px",
+						color: "#4B5563",
+					}}
+				>
 					João, pague a entrada de
 				</span>
-				<span className="text-2xl font-bold leading-[32.74px] text-gray-dark">
+				<span
+					style={{
+						fontSize: "24px",
+						fontWeight: "bold",
+						lineHeight: "32.74px",
+						color: "#4B5563",
+					}}
+				>
 					{formatPixPrice(pixPrice)} pelo Pix
 				</span>
 			</div>
 
-			<div className="flex items-center justify-center border-2 border-green-500 rounded-lg mb-4 w-[350px] h-[350px]">
+			<div
+				style={{
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "center",
+					border: "2px solid #22C55E",
+					borderRadius: "0.5rem",
+					marginBottom: "1rem",
+					width: "350px",
+					height: "350px",
+				}}
+			>
 				<Image src={qrcode} />
 			</div>
 
@@ -49,14 +92,30 @@ export default function Home() {
 				{<Image src={copy} />}
 			</Button>
 
-			<div className="mt-4">
-				<span className="text-sm font-semibold text-gray-light">
+			<div style={{ marginTop: "1rem" }}>
+				<span
+					style={{
+						fontSize: "0.875rem",
+						fontWeight: "600",
+						color: "#9CA3AF",
+					}}
+				>
 					Prazo de pagamento:
 				</span>
-				<span className="flex items-center text-base font-bold leading-[21.82px] text-gray-dark">
+				<span
+					style={{
+						display: "flex",
+						alignItems: "center",
+						fontSize: "1rem",
+						fontWeight: "bold",
+						lineHeight: "21.82px",
+						color: "#4B5563",
+					}}
+				>
 					15/12/2021 - 08:17
 				</span>
 			</div>
+
 			<div
 				style={{ display: "flex", alignItems: "center", position: "relative" }}
 			>

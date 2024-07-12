@@ -11,8 +11,8 @@ import blueflag from "../../assets/blueflag.svg";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 function RadioGroupExample() {
-	const price = 30500.0; //Variavel que irá armazenar o valor de acordo com o BACKEND
-	//Função para formatar o preço para BRL
+	const price = 30500.0; // Variável que irá armazenar o valor de acordo com o BACKEND
+	// Função para formatar o preço para BRL
 	const formatPrice = (price) => {
 		return price.toLocaleString("pt-BR", {
 			style: "currency",
@@ -20,7 +20,7 @@ function RadioGroupExample() {
 			minimumFractionDigits: 2,
 		});
 	};
-	const cashback = 300.0; //Variavel que irá armazenar o valor de acordo com o BACKEND
+	const cashback = 300.0; // Variável que irá armazenar o valor de acordo com o BACKEND
 	// Função para formatar o cashback para BRL
 	const formatCashback = (cashback) => {
 		return cashback.toLocaleString("pt-BR", {
@@ -45,7 +45,7 @@ function RadioGroupExample() {
 		<div>
 			<ThemeProvider theme={theme}>
 				<Box
-					sx={{
+					style={{
 						fontFamily: "Nunito",
 						display: "flex",
 						flexDirection: "column",
@@ -68,19 +68,17 @@ function RadioGroupExample() {
 							}}
 						>
 							<FormControlLabel
-								style={{}}
 								value="opcao1"
 								control={
 									<Radio
-										icon={<RadioButtonUncheckedIcon sx={{ opacity: 0.5 }} />}
+										icon={<RadioButtonUncheckedIcon style={{ opacity: 0.5 }} />}
 										checkedIcon={
 											<CheckCircleIcon style={{ color: "#03D69D" }} />
 										}
-										style={{}}
 									/>
 								}
 								label={
-									<div style={{}}>
+									<div>
 										<span
 											style={{
 												display: "flex",
@@ -105,7 +103,7 @@ function RadioGroupExample() {
 										<div>
 											<span
 												style={{
-													fontFamily: "Nunito", //Nao funcional ainda
+													fontFamily: "Nunito",
 													fontSize: "24px",
 													fontWeight: "800",
 													lineHeight: "32.74px",
