@@ -12,7 +12,7 @@ export default function Home() {
 				</h1>
 			</div>
 
-			<section>
+			<section font-sans>
 				<Radiogroup />
 			</section>
 

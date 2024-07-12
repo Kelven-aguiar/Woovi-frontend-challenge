@@ -3,6 +3,7 @@ import wooviLogo from "../../assets/wooviLogo.svg";
 import qrcode from "../../assets/qrcode.svg";
 import Button from "@mui/material/Button";
 import copy from "../../assets/copy.svg";
+import checkline from "../../assets/checkline.svg";
 
 export default function Home() {
 	const pixPrice = 15300.0; //Variável que irá armazenar o valor de acordo com o BACKEND ou calculado
@@ -56,15 +57,23 @@ export default function Home() {
 					15/12/2021 - 08:17
 				</span>
 			</div>
+			<div
+				style={{ display: "flex", alignItems: "center", position: "relative" }}
+			>
+				<div style={{ marginRight: "10px" }}>
+					<Image src={checkline} width={20} height={20} alt="Checkline" />
+				</div>
 
-			<div className="mt-2">
-				<span>1º entrada no Pix</span>
-				<span>R$ 15.300,00</span>
-			</div>
-
-			<div className="mt-2">
-				<span>2º entrada no cartão</span>
-				<span>R$ 15.300,00</span>
+				<div>
+					<div style={{ display: "flex", alignItems: "center" }}>
+						<span>1º entrada no Pix</span>
+						<span style={{ marginLeft: "8px" }}>R$ 15.300,00</span>
+					</div>
+					<div style={{ display: "flex", alignItems: "center" }}>
+						<span>2º entrada no cartão</span>
+						<span style={{ marginLeft: "8px" }}>R$ 15.300,00</span>
+					</div>
+				</div>
 			</div>
 		</main>
 	);
