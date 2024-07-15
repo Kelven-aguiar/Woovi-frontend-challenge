@@ -7,7 +7,6 @@ import checkline from "../../assets/checkline.svg";
 
 export default function Home() {
 	const pixPrice = 15300.0; // Variável que irá armazenar o valor de acordo com o BACKEND ou calculado
-
 	// Função para formatar para BRL
 	const formatPixPrice = (pixPrice) => {
 		return pixPrice.toLocaleString("pt-BR", {
@@ -25,8 +24,6 @@ export default function Home() {
 				alignItems: "center",
 				justifyContent: "space-between",
 				padding: "2.5rem",
-				maxWidth: "464px",
-				maxHeight: "1057px",
 			}}
 		>
 			<Image src={wooviLogo} />
@@ -66,8 +63,8 @@ export default function Home() {
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "center",
-					border: "2px solid #22C55E",
-					borderRadius: "0.5rem",
+					border: "2px solid #03D69D",
+					borderRadius: "10px",
 					marginBottom: "1rem",
 					width: "350px",
 					height: "350px",
@@ -92,47 +89,62 @@ export default function Home() {
 				{<Image src={copy} />}
 			</Button>
 
-			<div style={{ marginTop: "1rem" }}>
+			<div
+				style={{
+					marginTop: "1rem",
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+				}}
+			>
 				<span
 					style={{
-						fontSize: "0.875rem",
+						fontSize: "16px",
 						fontWeight: "600",
-						color: "#9CA3AF",
+						color: "#B2B2B2",
 					}}
 				>
 					Prazo de pagamento:
 				</span>
 				<span
 					style={{
-						display: "flex",
-						alignItems: "center",
-						fontSize: "1rem",
-						fontWeight: "bold",
+						fontSize: "16px",
+						fontWeight: "800",
 						lineHeight: "21.82px",
-						color: "#4B5563",
+						color: "#4D4D4D",
 					}}
 				>
 					15/12/2021 - 08:17
 				</span>
 			</div>
-
-			<div
-				style={{ display: "flex", alignItems: "center", position: "relative" }}
-			>
-				<div style={{ marginRight: "10px" }}>
-					<Image src={checkline} width={20} height={20} alt="Checkline" />
+			<div style={{ display: "flex", alignItems: "center", height: "70px" }}>
+				<div style={{ display: "flex", alignItems: "center" }}>
+					<Image src={checkline} width={25} height={50} />
 				</div>
-
-				<div>
-					<div style={{ display: "flex", alignItems: "center" }}>
+				<div style={{ marginRight: "20px" }}>
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "space-between",
+							width: "400px", //Não esta responsivo
+							marginBottom: "12px", //Não esta responsivo
+						}}
+					>
 						<span>1º entrada no Pix</span>
-						<span style={{ marginLeft: "8px" }}>R$ 15.300,00</span>
+						<span style={{ marginLeft: "auto" }}>R$ 15.300,00</span>
 					</div>
-					<div style={{ display: "flex", alignItems: "center" }}>
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "space-between",
+							width: "400px", //Não esta responsivo
+						}}
+					>
 						<span>2º entrada no cartão</span>
 						<span style={{ marginLeft: "8px" }}>R$ 15.300,00</span>
 					</div>
 				</div>
+				<hr style={{}} />
 			</div>
 		</main>
 	);

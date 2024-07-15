@@ -1,7 +1,7 @@
 import { Nunito } from "next/font/google";
 import "./globals.css";
 
-const nunito = Nunito({ subsets: ["latin"] });
+const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" });
 
 export const metadata = {
 	title: "Woovi frontend challenge",
