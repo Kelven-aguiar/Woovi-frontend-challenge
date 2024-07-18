@@ -1,5 +1,4 @@
-import Image from "next/image";
-import wooviLogo from "../../assets/wooviLogo.svg";
+import WooviLogo from "../components/wooviLogo";
 import Box from "@mui/material/Box";
 import Input from "@mui/material/Input";
 
@@ -17,7 +16,7 @@ export default function Home() {
 				maxHeight: "1057px",
 			}}
 		>
-			<Image src={wooviLogo} alt="Woovi Logo" width={123.51} height={36.65} />
+			<WooviLogo />
 			<div
 				style={{
 					width: "422px",

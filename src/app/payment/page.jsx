@@ -1,11 +1,12 @@
 import Image from "next/image";
-import wooviLogo from "../../assets/wooviLogo.svg";
+
 import qrcode from "../../assets/qrcode.svg";
 import Button from "@mui/material/Button";
 import copy from "../../assets/copy.svg";
 import checkline from "../../assets/checkline.svg";
+import WooviLogo from "../components/wooviLogo";
 
-export default function Home() {
+export default function payment() {
 	const pixPrice = 15300.0; // Variável que irá armazenar o valor de acordo com o BACKEND ou calculado
 	// Função para formatar para BRL
 	const formatPixPrice = (pixPrice) => {
@@ -26,7 +27,7 @@ export default function Home() {
 				padding: "2.5rem",
 			}}
 		>
-			<Image src={wooviLogo} />
+			<WooviLogo />
 			<div
 				style={{
 					width: "421px",

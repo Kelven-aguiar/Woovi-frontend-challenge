@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Blueflag from "../../assets/blueflag.svg";
+import Blueflag from "../components/blueflag";
 import {
 	RadioGroup,
 	FormControlLabel,
@@ -11,15 +11,14 @@ import {
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 const paymentOptions = [
 	{
-		pix: "Pix",
+		labelPix: "Pix",
 		value: "1x",
 		installments: "30.500,00",
 		cashback: "3%",
 		cashbackFlag: "300,00",
-		test: "R$ 300,00 de volta no seu Pix na hora",
 	},
 	{
-		installmentPix: "Pix Parcelado",
+		LabelinstallmentPix: "Pix Parcelado",
 		value: "2x",
 		installments: "R$ 15.300,00",
 		total: "R$ 30.600,00",
@@ -33,7 +32,7 @@ const paymentOptions = [
 		value: "4x",
 		installments: "R$ 7.725,00",
 		total: "R$ 30.900,00",
-		bestOption: true,
+		bestOption: "-3%",
 	},
 	{
 		value: "5x",
@@ -57,6 +56,7 @@ const RadioGroupPayment = () => {
 
 	const handleChange = (event) => {
 		setSelectedValue(event.target.value);
+		console.log(event.target.value);
 	};
 
 	return (
@@ -86,16 +86,17 @@ const RadioGroupPayment = () => {
 									? "8px"
 									: "0",
 						padding: "16px",
-						marginBottom: index === 0 ? "20px" : "0",
+						marginBottom: index === 0 ? "20px" : "0px",
 						display: "flex",
 						flexDirection: "column",
 						alignItems: "flex-start",
 						position: "relative",
+						width: "390px",
 						backgroundColor:
 							selectedValue === option.value ? "#f0fef9" : "#fff",
 					}}
 				>
-					{option.pix && (
+					{option.labelPix && (
 						<Box
 							sx={{
 								fontWeight: 800,
@@ -111,10 +112,10 @@ const RadioGroupPayment = () => {
 								borderRadius: "100px",
 							}}
 						>
-							{option.pix}
+							{option.labelPix}
 						</Box>
 					)}
-					{option.installmentPix && (
+					{option.LabelinstallmentPix && (
 						<Box
 							sx={{
 								fontWeight: 800,
@@ -130,97 +131,135 @@ const RadioGroupPayment = () => {
 								borderRadius: "100px",
 							}}
 						>
-							{option.installmentPix}
+							{option.LabelinstallmentPix}
 						</Box>
 					)}
 					<FormControlLabel
 						sx={{
 							display: "flex",
-							alignItems: "center",
+							alignItems: "flex-start",
 							justifyContent: "space-between",
 							width: "100%",
+							margin: "0 auto",
 						}}
 						value={option.value}
 						control={
 							<Radio
-								sx={{ order: 1, color: "#E5E5E5" }}
+								sx={{
+									display: "flex",
+									order: 1,
+									color: "#E5E5E5",
+									width: "26px",
+									height: "26px",
+									marginTop: "3px",
+								}}
 								checkedIcon={<CheckCircleIcon style={{ color: "#03D69D" }} />}
 							/>
 						}
 						label={
-							<Typography component="div">
-								<Box
-									sx={{
-										display: "flex",
-										alignItems: "center",
-										fontSize: "24px",
-										fontWeight: 800,
-										lineHeight: "32.74px",
-										flex: "1",
-									}}
-								>
-									<Box sx={{ marginRight: "8px" }}>{option.value}</Box>
+							<Box>
+								<Typography component="div">
 									<Box
 										sx={{
 											display: "flex",
 											alignItems: "center",
 											fontSize: "24px",
-											fontWeight: 600,
+											fontWeight: 800,
 											lineHeight: "32.74px",
+											flex: "1",
+											color: "#4D4D4D",
 										}}
 									>
-										{option.installments}
+										<Box sx={{ marginRight: "8px" }}>{option.value}</Box>
+										<Box
+											sx={{
+												display: "flex",
+												alignItems: "center",
+												fontSize: "24px",
+												fontWeight: 600,
+												lineHeight: "32.74px",
+											}}
+										>
+											{option.installments}
+										</Box>
 									</Box>
-								</Box>
-								{option.total && (
-									<Box
-										sx={{
-											fontWeight: 600,
-											fontSize: "16px",
-											lineHeight: "21.82px",
-											color: "#AFAFAF",
-										}}
-									>
-										Total: {option.total}
-									</Box>
-								)}
-								{option.cashback && (
-									<Box
-										sx={{
-											color: "#03D69D",
-										}}
-									>
-										<Typography component="span">
-											Ganhe{" "}
-											<span style={{ fontWeight: 800 }}>{option.cashback}</span>{" "}
-											de Cashback
-										</Typography>
-									</Box>
-								)}
+									{option.total && (
+										<Box
+											sx={{
+												fontWeight: 600,
+												fontSize: "16px",
+												lineHeight: "21.82px",
+												color: "#AFAFAF",
+											}}
+										>
+											Total: {option.total}
+										</Box>
+									)}
+									{option.cashback && (
+										<Box
+											sx={{
+												color: "#03D69D",
+											}}
+										>
+											<Typography component="span">
+												Ganhe{" "}
+												<span style={{ fontWeight: 800 }}>
+													{option.cashback}
+												</span>{" "}
+												de Cashback
+											</Typography>
+										</Box>
+									)}
+								</Typography>
 								{option.cashbackFlag && (
-									<Box
-										sx={{
-											backgroundImage: `url(${Blueflag.src})`,
-											backgroundSize: "contain",
-											backgroundRepeat: "no-repeat",
-											backgroundPosition: "center",
-											color: "#fff",
-											padding: "2px 8px",
-											borderRadius: "4px",
-											marginTop: "8px",
-											height: "100%",
-											width: "100%",
-										}}
-									>
-										🤑
-										<Typography component="span">
-											<Box component="span" sx={{ fontWeight: 600 }}>
-												R$ {option.cashbackFlag} de volta no seu Pix na hora
+									<Box sx={{ position: "relative", height: "33px" }}>
+										<Blueflag />
+										<Typography
+											sx={{
+												position: "absolute",
+												top: "50%",
+												translate: "0 -50%",
+												color: "#FFFFFF",
+												left: "10px",
+											}}
+										>
+											<Box component="span" sx={{}}>
+												🤑{" "}
+												<span style={{ fontWeight: 800 }}>
+													R$ {option.cashbackFlag}{" "}
+												</span>
+												<span style={{ fontWeight: 600 }}>
+													de volta no seu Pix na hora
+												</span>
 											</Box>{" "}
 										</Typography>
 									</Box>
 								)}
-							</Typography>
+								{option.bestOption && (
+									<Box sx={{ position: "relative", height: "33px" }}>
+										<Blueflag />
+										<Typography
+											sx={{
+												position: "absolute",
+												top: "50%",
+												translate: "0 -50%",
+												color: "#FFFFFF",
+												left: "10px",
+											}}
+											component="span"
+										>
+											<Box component="span" sx={{}}>
+												<span style={{ fontWeight: 800 }}>
+													{option.bestOption} de juros:{" "}
+												</span>
+												<span style={{ fontWeight: 600 }}>
+													Melhor opção de parcelamento
+												</span>
+											</Box>{" "}
+										</Typography>
+									</Box>
+								)}
+							</Box>
 						}
 					/>
 				</Box>

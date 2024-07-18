@@ -1,6 +1,9 @@
-import Image from "next/image";
-import wooviLogo from "../../assets/wooviLogo.svg";
+import WooviLogo from "../components/wooviLogo";
 import RadioGroupPayment from "../components/radiogroup";
+import Footer from "../components/footer";
+import { Button } from "@mui/material";
+import ArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+
 export default function Home() {
 	return (
 		<main
@@ -9,11 +12,12 @@ export default function Home() {
 				flexDirection: "column",
 				alignItems: "center",
 				justifyContent: "space-between",
-				margin: "1.5rem",
+				margin: "0px",
 				backgroundColor: "white",
+				width: "464px",
 			}}
 		>
-			<Image src={wooviLogo} alt="Woovi Logo" />
+			<WooviLogo />
 			<h1
 				style={{
 					width: "325px",
@@ -33,7 +37,28 @@ export default function Home() {
 			<section>
 				<RadioGroupPayment />
 			</section>
-			<div>Pix Parcelado</div>
+			<Button
+				variant="contained"
+				sx={{
+					borderRadius: "8px",
+					backgroundColor: "#133A6F",
+					"&:hover": {
+						backgroundColor: "#0C2750",
+					},
+				}}
+			>
+				<span
+					style={{
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+						textAlign: "center",
+					}}
+				>
+					PROSSEGUIR <ArrowRightIcon />
+				</span>
+			</Button>
+			<Footer />
 		</main>
 	);
 }
