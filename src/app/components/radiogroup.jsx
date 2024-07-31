@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
+import { PaymentContext } from "../contexts/PaymentContext";
 import Blueflag from "../components/blueflag";
 import {
 	RadioGroup,
@@ -9,54 +10,72 @@ import {
 	Typography,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+
 const paymentOptions = [
 	{
 		labelPix: "Pix",
 		value: "1x",
-		installments: "30.500,00",
+		installments: 30500.0,
 		cashback: "3%",
 		cashbackFlag: "300,00",
 	},
 	{
 		LabelinstallmentPix: "Pix Parcelado",
 		value: "2x",
-		installments: "R$ 15.300,00",
-		total: "R$ 30.600,00",
+		installments: 15300.0,
+		total: 30600.0,
 	},
 	{
 		value: "3x",
-		installments: "R$ 10.196,66",
-		total: "R$ 30.620,00",
+		installments: 10196.66,
+		total: 30620.0,
 	},
 	{
 		value: "4x",
-		installments: "R$ 7.725,00",
-		total: "R$ 30.900,00",
+		installments: 7725.0,
+		total: 30900.0,
 		bestOption: "-3%",
 	},
 	{
 		value: "5x",
-		installments: "R$ 6.300,00",
-		total: "R$ 31.500,00",
+		installments: 6300.0,
+		total: 31500.0,
 	},
 	{
 		value: "6x",
-		installments: "R$ 5.283,33",
-		total: "R$ 31.699,98",
+		installments: 5283.33,
+		total: 31699.98,
 	},
 	{
 		value: "7x",
-		installments: "R$ 4.542,85",
-		total: "R$ 31.800,00",
+		installments: 4542.85,
+		total: 31800.0,
 	},
 ];
 
 const RadioGroupPayment = () => {
 	const [selectedValue, setSelectedValue] = React.useState("2x");
+	const { setPaymentData } = useContext(PaymentContext);
 
 	const handleChange = (event) => {
+		const selectedOption = paymentOptions.find(
+			(option) => option.value === event.target.value,
+		);
 		setSelectedValue(event.target.value);
-		console.log(event.target.value);
+		setPaymentData({
+			value: selectedOption.value,
+			installments: selectedOption.installments,
+			total: selectedOption.total,
+		});
+
+		localStorage.setItem(
+			"paymentData",
+			JSON.stringify({
+				value: selectedOption.value,
+				installments: selectedOption.installments,
+				total: selectedOption.total,
+			}),
+		);
 	};
 
 	return (
@@ -180,7 +199,10 @@ const RadioGroupPayment = () => {
 												lineHeight: "32.74px",
 											}}
 										>
-											{option.installments}
+											{`${option.installments.toLocaleString("pt-BR", {
+												style: "currency",
+												currency: "BRL",
+											})}`}
 										</Box>
 									</Box>
 									{option.total && (
@@ -192,7 +214,11 @@ const RadioGroupPayment = () => {
 												color: "#AFAFAF",
 											}}
 										>
-											Total: {option.total}
+											Total:{" "}
+											{`${option.total.toLocaleString("pt-BR", {
+												style: "currency",
+												currency: "BRL",
+											})}`}
 										</Box>
 									)}
 									{option.cashback && (

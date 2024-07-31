@@ -1,7 +1,7 @@
 export default function WooviLogo({ color, width, height }) {
-	const fillColor = color === "#B2B2B2" ? "#B2B2B2" : "#03D69D";
+	const fillColor = color || "#03D69D";
 	const svgWidth = width || 124;
-	const svgHeight = height || 37;
+	const svgHeight = height || 36;
 
 	return (
 		<svg

@@ -1,10 +1,12 @@
-import WooviLogo from "../components/wooviLogo";
+"use client";
+import React, { useContext } from "react";
 import RadioGroupPayment from "../components/radiogroup";
-import Footer from "../components/footer";
-import { Button } from "@mui/material";
-import ArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import NextPageButton from "../components/NextPageButton";
+import { PaymentContext } from "../contexts/PaymentContext";
 
 export default function Home() {
+	const { name } = useContext(PaymentContext); // Acesse `name` diretamente
+
 	return (
 		<main
 			style={{
@@ -17,7 +19,6 @@ export default function Home() {
 				width: "464px",
 			}}
 		>
-			<WooviLogo />
 			<h1
 				style={{
 					width: "325px",
@@ -32,33 +33,12 @@ export default function Home() {
 					color: "#4D4D4D",
 				}}
 			>
-				João, como você quer pagar?
+				{`${name}, como você quer pagar?`}
 			</h1>
 			<section>
 				<RadioGroupPayment />
 			</section>
-			<Button
-				variant="contained"
-				sx={{
-					borderRadius: "8px",
-					backgroundColor: "#133A6F",
-					"&:hover": {
-						backgroundColor: "#0C2750",
-					},
-				}}
-			>
-				<span
-					style={{
-						display: "flex",
-						alignItems: "center",
-						justifyContent: "center",
-						textAlign: "center",
-					}}
-				>
-					PROSSEGUIR <ArrowRightIcon />
-				</span>
-			</Button>
-			<Footer />
+			<NextPageButton content="Prosseguir" path="payment-pix" type="link" />
 		</main>
 	);
 }
