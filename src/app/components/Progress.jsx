@@ -16,20 +16,11 @@ const getUpdatedDateTime = () => {
 	return `${dateString} - ${timeString}`;
 };
 
-const generateIdentifier = () => {
-	const array = new Uint8Array(16);
-	window.crypto.getRandomValues(array);
-	return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join(
-		"",
-	);
-};
-
 export default function Progress() {
 	const { paymentData } = useContext(PaymentContext);
-	const { installments, total } = paymentData;
+	const { installments, total, identifier } = paymentData;
 	const rest = total - installments;
 	const updatedDateTime = getUpdatedDateTime();
-	const identifier = generateIdentifier();
 
 	return (
 		<div>

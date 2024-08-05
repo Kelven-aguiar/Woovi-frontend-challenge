@@ -17,11 +17,15 @@
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
-    "react-input-mask": "^2.0.4"
+    "react-hook-form": "^7.52.1",
+    "react-input-mask": "^2.0.4",
+    "react-number-format": "^5.4.0",
+    "react-text-mask": "^5.5.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
     "@types/node": "20.14.10",
+    "@types/react-input-mask": "^3.0.5",
     "typescript": "5.5.3"
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext } from "react";
-import { PaymentContext } from "../contexts/PaymentContext";
+import { PaymentContext } from "../contexts/paymentContext";
 import Blueflag from "../components/blueflag";
 import {
 	RadioGroup,
@@ -160,6 +160,8 @@ const RadioGroupPayment = () => {
 							justifyContent: "space-between",
 							width: "100%",
 							margin: "0 auto",
+							position: "relative",
+							padding: "auto",
 						}}
 						value={option.value}
 						control={
@@ -171,10 +173,13 @@ const RadioGroupPayment = () => {
 									width: "26px",
 									height: "26px",
 									marginTop: "3px",
+									position: "absolute",
+									right: "8px",
 								}}
 								checkedIcon={<CheckCircleIcon style={{ color: "#03D69D" }} />}
 							/>
 						}
+						labelPlacement="end"
 						label={
 							<Box>
 								<Typography component="div">

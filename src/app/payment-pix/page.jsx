@@ -4,7 +4,7 @@ import { useContext } from "react";
 import qrcode from "../../assets/qrcode.svg";
 import Progress from "../components/progress";
 import NextPageButton from "../components/NextPageButton";
-import { PaymentContext } from "../contexts/PaymentContext";
+import { PaymentContext } from "../contexts/paymentContext";
 
 export default function Payment() {
 	const name = useContext(PaymentContext).name;
@@ -31,6 +31,7 @@ export default function Payment() {
 						fontWeight: "bold",
 						lineHeight: "32.74px",
 						color: "#4B5563",
+						textAlign: "center",
 					}}
 				>
 					{name}, pague a entrada de

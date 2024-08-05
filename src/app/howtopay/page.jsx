@@ -2,10 +2,10 @@
 import React, { useContext } from "react";
 import RadioGroupPayment from "../components/radiogroup";
 import NextPageButton from "../components/NextPageButton";
-import { PaymentContext } from "../contexts/PaymentContext";
+import { PaymentContext } from "../contexts/paymentContext";
 
 export default function Home() {
-	const { name } = useContext(PaymentContext); // Acesse `name` diretamente
+	const { name } = useContext(PaymentContext);
 
 	return (
 		<main
@@ -29,7 +29,7 @@ export default function Home() {
 					fontSize: "24px",
 					fontWeight: "800",
 					lineHeight: "32.74px",
-					textAlign: "left",
+					textAlign: "center",
 					color: "#4D4D4D",
 				}}
 			>
