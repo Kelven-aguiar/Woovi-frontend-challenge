@@ -1,22 +1,44 @@
-import Image from "next/image";
-import wooviLogo from "../../assets/wooviLogo.svg";
-import Radiogroup from "../components/radiogroup";
+"use client";
+import React, { useContext } from "react";
+import RadioGroupPayment from "../components/radiogroup";
+import NextPageButton from "../components/NextPageButton";
+import { PaymentContext } from "../contexts/paymentContext";
 
 export default function Home() {
+	const { name } = useContext(PaymentContext);
+
 	return (
-		<main className="flex flex-col items-center justify-between m-6 bg-white max-w-[464px] max-h-[1057px]">
-			<Image src={wooviLogo} alt="Woovi Logo" width={123.51} height={36.65} />
-			<div className="w-[325px] h-[33px] items-center flex m-5">
-				<h1 className="text-[24px] font-extrabold leading-[32.74px] text-left text-gray-dark">
-					João, como você quer pagar?
-				</h1>
-			</div>
-
+		<main
+			style={{
+				display: "flex",
+				flexDirection: "column",
+				alignItems: "center",
+				justifyContent: "space-between",
+				margin: "0px",
+				backgroundColor: "white",
+				width: "464px",
+			}}
+		>
+			<h1
+				style={{
+					width: "325px",
+					height: "33px",
+					display: "flex",
+					alignItems: "center",
+					margin: "1.25rem",
+					fontSize: "24px",
+					fontWeight: "800",
+					lineHeight: "32.74px",
+					textAlign: "center",
+					color: "#4D4D4D",
+				}}
+			>
+				{`${name}, como você quer pagar?`}
+			</h1>
 			<section>
-				<Radiogroup />
+				<RadioGroupPayment />
 			</section>
-
-			<div>Pix Parcelado</div>
+			<NextPageButton content="Prosseguir" path="payment-pix" type="link" />
 		</main>
 	);
 }
