@@ -8,6 +8,8 @@ import { PaymentContext } from "../contexts/paymentContext";
 
 export default function Payment() {
 	const name = useContext(PaymentContext).name;
+	const installments = useContext(PaymentContext).paymentData.installments;
+
 	return (
 		<main
 			style={{
@@ -34,17 +36,10 @@ export default function Payment() {
 						textAlign: "center",
 					}}
 				>
-					{name}, pague a entrada de
-				</span>
-				<span
-					style={{
-						fontSize: "24px",
-						fontWeight: "bold",
-						lineHeight: "32.74px",
-						color: "#4B5563",
-					}}
-				>
-					pelo Pix
+					{name}, pague a entrada de {installments.toLocaleString("pt-BR", {
+								style: "currency",
+								currency: "BRL",
+							})} pelo Pix
 				</span>
 			</div>
 

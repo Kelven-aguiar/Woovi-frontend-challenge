@@ -18,21 +18,13 @@ const getUpdatedDateTime = () => {
 
 export default function Progress() {
 	const { paymentData } = useContext(PaymentContext);
-	const { installments, total, identifier } = paymentData;
-	const rest = total - installments;
+	const { installments, total, identifier, rest } = paymentData;
 	const updatedDateTime = getUpdatedDateTime();
 
 	return (
-		<div>
-			<div
-				style={{
-					marginTop: "1rem",
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center",
-				}}
-			>
-				<span
+		<section style={{ marginTop: "1rem", textAlign: "center" }}>
+			<article>
+				<p
 					style={{
 						fontSize: "16px",
 						fontWeight: "600",
@@ -40,8 +32,8 @@ export default function Progress() {
 					}}
 				>
 					Prazo de pagamento:
-				</span>
-				<span
+				</p>
+				<p
 					style={{
 						fontSize: "16px",
 						fontWeight: "800",
@@ -50,45 +42,49 @@ export default function Progress() {
 					}}
 				>
 					{updatedDateTime}
-				</span>
-			</div>
-			<div style={{ display: "flex", alignItems: "center", height: "70px" }}>
-				<div style={{ display: "flex", alignItems: "center" }}>
-					<Checkedline />
-				</div>
-				<div style={{ marginRight: "20px" }}>
-					<div
+				</p>
+			</article>
+
+			<div
+				style={{
+					display: "flex",
+					alignItems: "center",
+					height: "70px",
+				}}
+			>
+				<Checkedline />
+				<div>
+					<dl
 						style={{
 							display: "flex",
 							justifyContent: "space-between",
-							width: "400px", //Não esta responsivo
-							marginBottom: "12px", //Não esta responsivo
+							width: "400px",
+							marginBottom: "12px",
 						}}
 					>
-						<span>1ª entrada no Pix</span>
-						<span style={{ marginLeft: "auto" }}>
-							{" "}
+						<dt>1ª entrada no Pix</dt>
+						<dd style={{ marginLeft: "auto" }}>
 							{installments.toLocaleString("pt-BR", {
 								style: "currency",
 								currency: "BRL",
 							})}
-						</span>
-					</div>
-					<div
+						</dd>
+					</dl>
+					<dl
 						style={{
 							display: "flex",
 							justifyContent: "space-between",
-							width: "400px", //Não esta responsivo
+							width: "400px",
 						}}
 					>
-						<span>2º no cartão</span>
-						<span style={{ marginLeft: "8px" }}>
+						<dt>2º no cartão</dt>
+						<dd style={{ marginLeft: "8px" }}>
 							{rest.toLocaleString("pt-BR", {
 								style: "currency",
 								currency: "BRL",
 							})}
-						</span>
-					</div>
+						</dd>
+					</dl>
 				</div>
 			</div>
 			<hr
@@ -107,7 +103,7 @@ export default function Progress() {
 					color: "#4D4D4D",
 				}}
 			>
-				<span
+				<p
 					style={{
 						fontWeight: "600",
 						fontSize: "14px",
@@ -115,7 +111,7 @@ export default function Progress() {
 					}}
 				>
 					CET: 0,5%
-				</span>
+				</p>
 				<div
 					style={{
 						fontWeight: "600",
@@ -123,13 +119,13 @@ export default function Progress() {
 						lineHeight: "24.55px",
 					}}
 				>
-					<span>Total: </span>
-					<span>
+					<p>
+						Total:{" "}
 						{total.toLocaleString("pt-BR", {
 							style: "currency",
 							currency: "BRL",
 						})}
-					</span>
+					</p>
 				</div>
 			</div>
 			<hr
@@ -149,14 +145,12 @@ export default function Progress() {
 					border: "none",
 				}}
 			/>
-			<div
+			<article
 				style={{
-					display: "flex",
-					alignItems: "center",
-					flexDirection: "column",
+					textAlign: "center",
 				}}
 			>
-				<span
+				<p
 					style={{
 						fontWeight: "600",
 						fontSize: "14px",
@@ -164,15 +158,18 @@ export default function Progress() {
 						color: "#B2B2B2",
 					}}
 				>
-					{" "}
 					Identificador
-				</span>
-				<span
-					style={{ fontWeight: "800", fontSize: "14px", lineHeight: "19.1px" }}
+				</p>
+				<p
+					style={{
+						fontWeight: "800",
+						fontSize: "14px",
+						lineHeight: "19.1px",
+					}}
 				>
-					<span>{identifier}</span>
-				</span>
-			</div>
-		</div>
+					{identifier}
+				</p>
+			</article>
+		</section>
 	);
 }

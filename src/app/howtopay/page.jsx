@@ -5,7 +5,7 @@ import NextPageButton from "../components/NextPageButton";
 import { PaymentContext } from "../contexts/paymentContext";
 
 export default function Home() {
-	const { name } = useContext(PaymentContext);
+	const name = useContext(PaymentContext).name;
 
 	return (
 		<main
