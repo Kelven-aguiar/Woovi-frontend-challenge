@@ -24,7 +24,7 @@ export default function NextPageButton({ path, content, icon, type }) {
 		}
 	};
 
-	const Icon =
+	const renderIcon = () =>
 		icon === "copy" ? (
 			<Image
 				src={copyIcon}
@@ -33,9 +33,9 @@ export default function NextPageButton({ path, content, icon, type }) {
 				height={22}
 				style={{ marginLeft: "8px" }}
 			/>
-		) : (
+		) : icon === "arrow" ? (
 			<ArrowRightIcon style={{ marginLeft: "8px" }} />
-		);
+		) : null;
 
 	return (
 		<>
@@ -58,7 +58,7 @@ export default function NextPageButton({ path, content, icon, type }) {
 						textAlign: "center",
 					}}
 				>
-					{content} {Icon}
+					{content} {renderIcon()}
 				</span>
 			</Button>
 			{type === "trigger" && (

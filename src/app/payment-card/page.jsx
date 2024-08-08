@@ -1,11 +1,11 @@
 "use client";
-import React, { useContext } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import React, { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import { PaymentContext } from "../contexts/paymentContext";
 import Progress from "../components/progress";
 import InputMask from "react-input-mask";
+import FinishModal from "../components/FinishModal";
+
 import {
 	Box,
 	TextField,
@@ -41,23 +41,12 @@ const commonTextFieldStyles = {
 	},
 };
 
-const createPaymentFormSchema = z.object({
-	nomeCompleto: z.string().min(1, "Nome é obrigatório."),
-	cpf: z
-		.string()
-		.nonempty("CPF é obrigatório")
-		.min(11, "CPF deve conter 11 dígitos."),
-	numeroCartao: z.string().min(16, "Número do cartão é obrigatório."),
-	vencimento: z.string().min(1, "Data de vencimento é obrigatória."),
-	cvv: z.string().min(3, "CVV é obrigatório."),
-	parcelas: z.number().min(1, "Selecione o número de parcelas."),
-});
-
 export default function PaymentForm() {
+	const [open, setOpen] = useState(false);
 	const { name } = useContext(PaymentContext);
-
 	const { paymentData } = useContext(PaymentContext);
 	const rest = paymentData.rest;
+
 	function generateInstallments() {
 		const installments = [];
 		for (let i = 0; i < 6; i++) {
@@ -68,16 +57,14 @@ export default function PaymentForm() {
 	const installmentOptions = generateInstallments(rest);
 
 	const {
-		control,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({
-		resolver: zodResolver(createPaymentFormSchema),
-	});
+		register,
+	} = useForm();
 
 	function createPayment(data) {
-		//Função para lidar com os dados do pagamento
 		console.log(data);
+		setOpen(true);
 	}
 
 	return (
@@ -117,111 +104,95 @@ export default function PaymentForm() {
 					margin: "auto",
 				}}
 			>
-				<Controller
-					name="nomeCompleto"
-					control={control}
-					render={({ field }) => (
+				<TextField
+					label="Nome Completo"
+					variant="outlined"
+					{...register("nomeCompleto", { required: "Nome é obrigatório." })}
+					fullWidth
+					error={!!errors.nomeCompleto}
+					helperText={errors.nomeCompleto?.message}
+					sx={commonTextFieldStyles}
+				/>
+				<InputMask
+					mask="999.999.999-99"
+					maskChar=""
+					maskPlaceholder=""
+					{...register("cpf", {
+						required: "CPF é obrigatório",
+						minLength: {
+							value: 11,
+							message: "CPF deve conter 11 dígitos.",
+						},
+					})}
+				>
+					{(inputProps) => (
 						<TextField
-							label="Nome Completo"
+							label="CPF"
 							variant="outlined"
-							{...field}
+							{...inputProps}
 							fullWidth
-							error={!!errors.nomeCompleto}
-							helperText={errors.nomeCompleto?.message}
+							error={!!errors.cpf}
+							helperText={errors.cpf?.message}
 							sx={commonTextFieldStyles}
 						/>
 					)}
-				/>
-				<Controller
-					name="cpf"
-					control={control}
-					render={({ field }) => (
-						<InputMask
-							mask="999.999.999-99"
-							maskChar=""
-							maskPlaceholder=""
-							{...field}
-						>
-							{(inputProps) => (
-								<TextField
-									label="CPF"
-									variant="outlined"
-									{...inputProps}
-									fullWidth
-									error={!!errors.cpf}
-									helperText={errors.cpf?.message}
-									sx={commonTextFieldStyles}
-								/>
-							)}
-						</InputMask>
+				</InputMask>
+				<InputMask
+					mask="9999 9999 9999 9999"
+					maskChar=""
+					maskPlaceholder=""
+					{...register("numeroCartao", {
+						required: "Número do cartão é obrigatório.",
+					})}
+				>
+					{(inputProps) => (
+						<TextField
+							label="Número do Cartão"
+							variant="outlined"
+							{...inputProps}
+							fullWidth
+							error={!!errors.numeroCartao}
+							helperText={errors.numeroCartao?.message}
+							sx={commonTextFieldStyles}
+						/>
 					)}
-				/>
-				<Controller
-					name="numeroCartao"
-					control={control}
-					render={({ field }) => (
-						<InputMask
-							mask="9999 9999 9999 9999"
-							maskChar=""
-							maskPlaceholder=""
-							{...field}
-						>
-							{(inputProps) => (
-								<TextField
-									label="Número do Cartão"
-									variant="outlined"
-									{...inputProps}
-									fullWidth
-									error={!!errors.numeroCartao}
-									helperText={errors.numeroCartao?.message}
-									sx={commonTextFieldStyles}
-								/>
-							)}
-						</InputMask>
-					)}
-				/>
+				</InputMask>
 				<Box
 					sx={{
 						display: "flex",
 						gap: 2,
 					}}
 				>
-					<Controller
-						name="vencimento"
-						control={control}
-						render={({ field }) => (
-							<InputMask mask="99/99" maskChar="" {...field}>
-								{(inputProps) => (
-									<TextField
-										label="Vencimento"
-										variant="outlined"
-										{...inputProps}
-										fullWidth
-										error={!!errors.vencimento}
-										helperText={errors.vencimento?.message}
-										name="vencimento"
-										inputProps={{ maxLength: 5 }}
-										sx={commonTextFieldStyles}
-									/>
-								)}
-							</InputMask>
-						)}
-					/>
-					<Controller
-						name="cvv"
-						control={control}
-						render={({ field }) => (
+					<InputMask
+						mask="99/99"
+						maskChar=""
+						{...register("vencimento", {
+							required: "Data de vencimento é obrigatória.",
+						})}
+					>
+						{(inputProps) => (
 							<TextField
-								label="CVV"
+								label="Vencimento"
 								variant="outlined"
-								{...field}
-								flex={1}
-								inputProps={{ maxLength: 3 }}
-								error={!!errors.cvv}
-								helperText={errors.cvv?.message}
+								{...inputProps}
+								fullWidth
+								error={!!errors.vencimento}
+								helperText={errors.vencimento?.message}
+								name="vencimento"
+								inputProps={{ maxLength: 5 }}
 								sx={commonTextFieldStyles}
 							/>
 						)}
+					</InputMask>
+					<TextField
+						label="CVV"
+						variant="outlined"
+						{...register("cvv", { required: "CVV é obrigatório." })}
+						flex={1}
+						inputProps={{ maxLength: 3 }}
+						error={!!errors.cvv}
+						helperText={errors.cvv?.message}
+						sx={commonTextFieldStyles}
 					/>
 				</Box>
 				<FormControl
@@ -252,22 +223,22 @@ export default function PaymentForm() {
 					}}
 				>
 					<InputLabel>Parcelas</InputLabel>
-					<Controller
-						name="parcelas"
-						control={control}
-						render={({ field }) => (
-							<Select {...field} label="Parcelas" error={!!errors.parcelas}>
-								{installmentOptions.map((option, index) => (
-									<MenuItem key={index} value={index + 1}>
-										{`${index + 1}x ${option.toLocaleString("pt-BR", {
-											style: "currency",
-											currency: "BRL",
-										})}`}
-									</MenuItem>
-								))}
-							</Select>
-						)}
-					/>
+					<Select
+						{...register("parcelas", {
+							required: "Selecione o número de parcelas.",
+						})}
+						label="Parcelas"
+						error={!!errors.parcelas}
+					>
+						{installmentOptions.map((option, index) => (
+							<MenuItem key={index} value={index + 1}>
+								{`${index + 1}x ${option.toLocaleString("pt-BR", {
+									style: "currency",
+									currency: "BRL",
+								})}`}
+							</MenuItem>
+						))}
+					</Select>
 					{errors.parcelas && (
 						<FormHelperText error>{errors.parcelas.message}</FormHelperText>
 					)}
@@ -283,8 +254,9 @@ export default function PaymentForm() {
 						},
 					}}
 				>
-					Enviar
+					Pagar
 				</Button>
+				<FinishModal open={open} onClose={() => setOpen(false)} />
 			</Box>
 			<Progress />
 		</main>

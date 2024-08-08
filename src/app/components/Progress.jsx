@@ -24,7 +24,7 @@ export default function Progress() {
 	return (
 		<section style={{ marginTop: "1rem", textAlign: "center" }}>
 			<article>
-				<p
+				<div
 					style={{
 						fontSize: "16px",
 						fontWeight: "600",
@@ -32,8 +32,8 @@ export default function Progress() {
 					}}
 				>
 					Prazo de pagamento:
-				</p>
-				<p
+				</div>
+				<div
 					style={{
 						fontSize: "16px",
 						fontWeight: "800",
@@ -42,14 +42,15 @@ export default function Progress() {
 					}}
 				>
 					{updatedDateTime}
-				</p>
+				</div>
 			</article>
 
 			<div
+				className="esta div"
 				style={{
 					display: "flex",
+					justifyContent: "center",
 					alignItems: "center",
-					height: "70px",
 				}}
 			>
 				<Checkedline />
@@ -57,8 +58,7 @@ export default function Progress() {
 					<dl
 						style={{
 							display: "flex",
-							justifyContent: "space-between",
-							width: "400px",
+							justifyContent: "center",
 							marginBottom: "12px",
 						}}
 					>
@@ -105,9 +105,12 @@ export default function Progress() {
 			>
 				<p
 					style={{
+						display: "flex",
 						fontWeight: "600",
 						fontSize: "14px",
 						lineHeight: "19.1px",
+						alignItems: "center",
+						justifyContent: "center",
 					}}
 				>
 					CET: 0,5%

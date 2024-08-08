@@ -38,7 +38,12 @@ export default function Home() {
 			<section>
 				<RadioGroupPayment />
 			</section>
-			<NextPageButton content="Prosseguir" path="payment-pix" type="link" />
+			<NextPageButton
+				content="Prosseguir"
+				path="payment-pix"
+				type="link"
+				icon="arrow"
+			/>
 		</main>
 	);
 }

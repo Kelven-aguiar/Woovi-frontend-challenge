@@ -36,10 +36,12 @@ export default function Payment() {
 						textAlign: "center",
 					}}
 				>
-					{name}, pague a entrada de {installments.toLocaleString("pt-BR", {
-								style: "currency",
-								currency: "BRL",
-							})} pelo Pix
+					{name}, pague a entrada de{" "}
+					{installments.toLocaleString("pt-BR", {
+						style: "currency",
+						currency: "BRL",
+					})}{" "}
+					pelo Pix
 				</span>
 			</div>
 
