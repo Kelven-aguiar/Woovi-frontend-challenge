@@ -1,7 +1,10 @@
 "use client";
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import { PaymentContext } from "../contexts/paymentContext";
 import Progress from "../components/progress";
+import InputMask from "react-input-mask";
+import FinishModal from "../components/FinishModal";
 
 import {
 	Box,
@@ -11,31 +14,59 @@ import {
 	FormControl,
 	InputLabel,
 	Select,
+	FormHelperText,
 } from "@mui/material";
 
+const commonTextFieldStyles = {
+	"& .MuiOutlinedInput-root": {
+		"& fieldset": {
+			borderColor: "#E5E5E5",
+			borderWidth: "2px",
+		},
+		"&:hover fieldset": {
+			borderColor: "#03D69D",
+		},
+		"&.Mui-focused fieldset": {
+			borderColor: "#03D69D",
+		},
+	},
+	"& .MuiInputBase-input": {
+		borderRadius: "8px",
+	},
+	"& .MuiInputLabel-root": {
+		color: "#4D4D4D",
+	},
+	"& .MuiInputLabel-root.Mui-focused": {
+		color: "#4D4D4D",
+	},
+};
+
 export default function PaymentForm() {
-	const [formData, setFormData] = useState({
-		nomeCompleto: "",
-		cpf: "",
-		numeroCartao: "",
-		vencimento: "",
-		cvv: "",
-		parcelas: "",
-	});
-
-	const handleChange = (event) => {
-		const { name, value } = event.target;
-		setFormData({
-			...formData,
-			[name]: value,
-		});
-	};
-
-	const handleSubmit = (event) => {
-		event.preventDefault();
-	};
-
+	const [open, setOpen] = useState(false);
 	const { name } = useContext(PaymentContext);
+	const { paymentData } = useContext(PaymentContext);
+	const rest = paymentData.rest;
+
+	function generateInstallments() {
+		const installments = [];
+		for (let i = 0; i < 6; i++) {
+			installments.push(Number(rest / (i + 1)));
+		}
+		return installments;
+	}
+	const installmentOptions = generateInstallments(rest);
+
+	const {
+		handleSubmit,
+		formState: { errors },
+		register,
+	} = useForm();
+
+	function createPayment(data) {
+		console.log(data);
+		setOpen(true);
+	}
+
 	return (
 		<main
 			style={{
@@ -43,9 +74,7 @@ export default function PaymentForm() {
 				flexDirection: "column",
 				alignItems: "center",
 				justifyContent: "space-between",
-				margin: "0px",
 				backgroundColor: "white",
-				width: "464px",
 			}}
 		>
 			<h1
@@ -62,11 +91,11 @@ export default function PaymentForm() {
 					color: "#4D4D4D",
 				}}
 			>
-				{`${name}, pague o restante em 1x no cartão`}
+				{`${name}, pague o restante em até 6x no cartão`}
 			</h1>
 			<Box
 				component="form"
-				onSubmit={handleSubmit}
+				onSubmit={handleSubmit(createPayment)}
 				sx={{
 					display: "flex",
 					flexDirection: "column",
@@ -78,166 +107,92 @@ export default function PaymentForm() {
 				<TextField
 					label="Nome Completo"
 					variant="outlined"
-					name="nomeCompleto"
-					value={formData.nomeCompleto}
-					onChange={handleChange}
+					{...register("nomeCompleto", { required: "Nome é obrigatório." })}
 					fullWidth
-					sx={{
-						"& .MuiOutlinedInput-root": {
-							"& fieldset": {
-								borderColor: "#E5E5E5",
-								borderWidth: "2px",
-							},
-							"&:hover fieldset": {
-								borderColor: "#03D69D",
-							},
-							"&.Mui-focused fieldset": {
-								borderColor: "#03D69D",
-							},
-						},
-						"& .MuiInputBase-input": {
-							borderRadius: "8px",
-						},
-						"& .MuiInputLabel-root": {
-							color: "#4D4D4D",
-						},
-						"& .MuiInputLabel-root.Mui-focused": {
-							color: "#4D4D4D",
-						},
-					}}
+					error={!!errors.nomeCompleto}
+					helperText={errors.nomeCompleto?.message}
+					sx={commonTextFieldStyles}
 				/>
-				<TextField
-					label="CPF"
-					variant="outlined"
-					name="cpf"
-					value={formData.cpf}
-					onChange={handleChange}
-					fullWidth
-					sx={{
-						"& .MuiOutlinedInput-root": {
-							"& fieldset": {
-								borderColor: "#E5E5E5",
-								borderWidth: "2px",
-							},
-							"&:hover fieldset": {
-								borderColor: "#03D69D",
-							},
-							"&.Mui-focused fieldset": {
-								borderColor: "#03D69D",
-							},
+				<InputMask
+					mask="999.999.999-99"
+					maskChar=""
+					maskPlaceholder=""
+					{...register("cpf", {
+						required: "CPF é obrigatório",
+						minLength: {
+							value: 11,
+							message: "CPF deve conter 11 dígitos.",
 						},
-						"& .MuiInputBase-input": {
-							borderRadius: "8px",
-						},
-						"& .MuiInputLabel-root": {
-							color: "#4D4D4D",
-						},
-						"& .MuiInputLabel-root.Mui-focused": {
-							color: "#4D4D4D",
-						},
-					}}
-				/>
-				<TextField
-					label="Número do Cartão"
-					variant="outlined"
-					name="numeroCartao"
-					value={formData.numeroCartao}
-					onChange={handleChange}
-					fullWidth
-					sx={{
-						"& .MuiOutlinedInput-root": {
-							"& fieldset": {
-								borderColor: "#E5E5E5",
-								borderWidth: "2px",
-							},
-							"&:hover fieldset": {
-								borderColor: "#03D69D",
-							},
-							"&.Mui-focused fieldset": {
-								borderColor: "#03D69D",
-							},
-						},
-						"& .MuiInputBase-input": {
-							borderRadius: "8px",
-						},
-						"& .MuiInputLabel-root": {
-							color: "#4D4D4D",
-						},
-						"& .MuiInputLabel-root.Mui-focused": {
-							color: "#4D4D4D",
-						},
-					}}
-				/>
+					})}
+				>
+					{(inputProps) => (
+						<TextField
+							label="CPF"
+							variant="outlined"
+							{...inputProps}
+							fullWidth
+							error={!!errors.cpf}
+							helperText={errors.cpf?.message}
+							sx={commonTextFieldStyles}
+						/>
+					)}
+				</InputMask>
+				<InputMask
+					mask="9999 9999 9999 9999"
+					maskChar=""
+					maskPlaceholder=""
+					{...register("numeroCartao", {
+						required: "Número do cartão é obrigatório.",
+					})}
+				>
+					{(inputProps) => (
+						<TextField
+							label="Número do Cartão"
+							variant="outlined"
+							{...inputProps}
+							fullWidth
+							error={!!errors.numeroCartao}
+							helperText={errors.numeroCartao?.message}
+							sx={commonTextFieldStyles}
+						/>
+					)}
+				</InputMask>
 				<Box
 					sx={{
 						display: "flex",
 						gap: 2,
 					}}
 				>
-					<TextField
-						label="Vencimento (MM/AA)"
-						variant="outlined"
-						name="vencimento"
-						value={formData.vencimento}
-						onChange={handleChange}
-						flex={1}
-						placeholder="MM/AA"
-						inputProps={{ maxLength: 5 }}
-						sx={{
-							"& .MuiOutlinedInput-root": {
-								"& fieldset": {
-									borderColor: "#E5E5E5",
-									borderWidth: "2px",
-								},
-								"&:hover fieldset": {
-									borderColor: "#03D69D",
-								},
-								"&.Mui-focused fieldset": {
-									borderColor: "#03D69D",
-								},
-							},
-							"& .MuiInputBase-input": {
-								borderRadius: "8px",
-							},
-							"& .MuiInputLabel-root": {
-								color: "#4D4D4D",
-							},
-							"& .MuiInputLabel-root.Mui-focused": {
-								color: "#4D4D4D",
-							},
-						}}
-					/>
+					<InputMask
+						mask="99/99"
+						maskChar=""
+						{...register("vencimento", {
+							required: "Data de vencimento é obrigatória.",
+						})}
+					>
+						{(inputProps) => (
+							<TextField
+								label="Vencimento"
+								variant="outlined"
+								{...inputProps}
+								fullWidth
+								error={!!errors.vencimento}
+								helperText={errors.vencimento?.message}
+								name="vencimento"
+								inputProps={{ maxLength: 5 }}
+								sx={commonTextFieldStyles}
+							/>
+						)}
+					</InputMask>
 					<TextField
 						label="CVV"
 						variant="outlined"
-						name="cvv"
-						value={formData.cvv}
-						onChange={handleChange}
+						{...register("cvv", { required: "CVV é obrigatório." })}
 						flex={1}
 						inputProps={{ maxLength: 3 }}
-						sx={{
-							"& .MuiOutlinedInput-root": {
-								"& fieldset": {
-									borderColor: "#E5E5E5",
-									borderWidth: "2px",
-								},
-								"&:hover fieldset": {
-									borderColor: "#03D69D",
-								},
-								"&.Mui-focused fieldset": {
-									borderColor: "#03D69D",
-								},
-							},
-							"& .MuiInputBase-input": {
-								borderRadius: "8px",
-							},
-							"& .MuiInputLabel-root": {
-								color: "#4D4D4D",
-							},
-							"& .MuiInputLabel-root.Mui-focused": {
-								color: "#4D4D4D",
-							},
-						}}
+						error={!!errors.cvv}
+						helperText={errors.cvv?.message}
+						sx={commonTextFieldStyles}
 					/>
 				</Box>
 				<FormControl
@@ -269,18 +224,24 @@ export default function PaymentForm() {
 				>
 					<InputLabel>Parcelas</InputLabel>
 					<Select
-						value={formData.parcelas}
-						onChange={handleChange}
-						name="parcelas"
+						{...register("parcelas", {
+							required: "Selecione o número de parcelas.",
+						})}
 						label="Parcelas"
+						error={!!errors.parcelas}
 					>
-						<MenuItem value={1}>1x</MenuItem>
-						<MenuItem value={2}>2x</MenuItem>
-						<MenuItem value={3}>3x</MenuItem>
-						<MenuItem value={4}>4x</MenuItem>
-						<MenuItem value={5}>5x</MenuItem>
-						<MenuItem value={6}>6x</MenuItem>
+						{installmentOptions.map((option, index) => (
+							<MenuItem key={index} value={index + 1}>
+								{`${index + 1}x ${option.toLocaleString("pt-BR", {
+									style: "currency",
+									currency: "BRL",
+								})}`}
+							</MenuItem>
+						))}
 					</Select>
+					{errors.parcelas && (
+						<FormHelperText error>{errors.parcelas.message}</FormHelperText>
+					)}
 				</FormControl>
 				<Button
 					type="submit"
@@ -293,8 +254,9 @@ export default function PaymentForm() {
 						},
 					}}
 				>
-					Enviar
+					Pagar
 				</Button>
+				<FinishModal open={open} onClose={() => setOpen(false)} />
 			</Box>
 			<Progress />
 		</main>

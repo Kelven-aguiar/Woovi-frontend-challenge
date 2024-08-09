@@ -2,13 +2,11 @@
 import React, { createContext, useState, useEffect } from "react";
 
 export const PaymentContext = createContext();
-
+//Gerador de identificador
 const generateIdentifier = () => {
 	const array = new Uint8Array(16);
 	window.crypto.getRandomValues(array);
-	return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join(
-		"",
-	);
+	return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join("");
 };
 
 export const PaymentProvider = ({ children }) => {
@@ -17,6 +15,7 @@ export const PaymentProvider = ({ children }) => {
 		installments: "",
 		total: "",
 		identifier: "",
+		rest: "", 
 	});
 
 	useEffect(() => {
@@ -28,6 +27,18 @@ export const PaymentProvider = ({ children }) => {
 			}));
 		}
 	}, [paymentData.identifier]);
+	
+// Gerar valor restante para pagar no cartão
+	useEffect(() => {
+		const total = paymentData.total
+		const installments = paymentData.installments
+		const rest = total - installments;
+		setPaymentData((prevData) => ({
+			...prevData,
+			rest,
+		}));
+
+	}, [paymentData.total, paymentData.installments]);
 
 	const [name, setName] = useState("");
 	const [checkedline, setCheckedline] = useState(false);

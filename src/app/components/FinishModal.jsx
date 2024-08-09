@@ -1,9 +1,8 @@
 import React from "react";
 import { Modal, Box, Typography } from "@mui/material";
 import WooviLogo from "./WooviLogo";
-import NextPageButton from "./NextPageButton";
 
-const CustomModal = ({ open, onClose }) => {
+const FinishModal = ({ open, onClose }) => {
 	return (
 		<Modal
 			open={open}
@@ -38,20 +37,36 @@ const CustomModal = ({ open, onClose }) => {
 						fontSize: "24px",
 						fontWeight: "800",
 						lineHeight: "32.74px",
+						textAlign: "center",
 					}}
 				>
-					Pagamento Pix confirmado!
+					Pagamento do Pix e do cartão confirmado!
 				</Typography>
-
-				<NextPageButton
-					icon="arrow"
-					path="payment-card"
-					content="Prosseguir"
-					type="link"
-				/>
+				<Typography
+					variant="body1"
+					sx={{
+						mt: 2,
+						color: "white",
+						textAlign: "center",
+						fontSize: "16px",
+					}}
+				>
+					<div>Obrigado por vizualizar minha challenger!</div>
+					<a
+						href="https://github.com/Kelven-aguiar"
+						style={{
+							color: "white",
+							textDecoration: "underline",
+						}}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						github.com/Kelven-aguiar
+					</a>
+				</Typography>
 			</Box>
 		</Modal>
 	);
 };
 
-export default CustomModal;
+export default FinishModal;

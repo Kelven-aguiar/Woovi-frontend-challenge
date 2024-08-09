@@ -5,7 +5,7 @@ import NextPageButton from "../components/NextPageButton";
 import { PaymentContext } from "../contexts/paymentContext";
 
 export default function Home() {
-	const { name } = useContext(PaymentContext);
+	const name = useContext(PaymentContext).name;
 
 	return (
 		<main
@@ -25,7 +25,7 @@ export default function Home() {
 					height: "33px",
 					display: "flex",
 					alignItems: "center",
-					margin: "1.25rem",
+					marginBottom: "2rem",
 					fontSize: "24px",
 					fontWeight: "800",
 					lineHeight: "32.74px",
@@ -35,10 +35,15 @@ export default function Home() {
 			>
 				{`${name}, como você quer pagar?`}
 			</h1>
-			<section>
+			<section style={{ marginBottom: "0.5rem" }}>
 				<RadioGroupPayment />
 			</section>
-			<NextPageButton content="Prosseguir" path="payment-pix" type="link" />
+			<NextPageButton
+				content="Prosseguir"
+				path="payment-pix"
+				type="link"
+				icon="arrow"
+			/>
 		</main>
 	);
 }
