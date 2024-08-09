@@ -153,7 +153,7 @@ export default function Progress() {
 					textAlign: "center",
 				}}
 			>
-				<div
+				<p
 					style={{
 						fontWeight: "600",
 						fontSize: "14px",
@@ -162,7 +162,7 @@ export default function Progress() {
 					}}
 				>
 					Identificador
-				</div>
+				</p>
 				<div
 					style={{
 						fontWeight: "800",
