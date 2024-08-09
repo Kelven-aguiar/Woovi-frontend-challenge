@@ -16,7 +16,7 @@ const CustomStepper = () => {
 				orientation="vertical"
 				sx={{
 					"& .MuiStepConnector-line": {
-						borderColor: "#03D69D", // Customizing the connector line color
+						borderColor: "#03D69D",
 					},
 				}}
 			>

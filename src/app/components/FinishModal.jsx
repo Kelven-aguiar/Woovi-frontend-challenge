@@ -1,7 +1,6 @@
 import React from "react";
 import { Modal, Box, Typography } from "@mui/material";
 import WooviLogo from "./WooviLogo";
-import NextPageButton from "./NextPageButton";
 
 const FinishModal = ({ open, onClose }) => {
 	return (

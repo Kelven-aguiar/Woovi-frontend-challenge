@@ -30,7 +30,7 @@ export default function PaymentForm() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		// Process form data here
+
 		console.log(formData);
 	};
 

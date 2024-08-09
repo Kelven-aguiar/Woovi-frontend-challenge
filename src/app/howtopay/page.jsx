@@ -25,7 +25,7 @@ export default function Home() {
 					height: "33px",
 					display: "flex",
 					alignItems: "center",
-					margin: "1.25rem",
+					marginBottom: "2rem",
 					fontSize: "24px",
 					fontWeight: "800",
 					lineHeight: "32.74px",
@@ -35,7 +35,7 @@ export default function Home() {
 			>
 				{`${name}, como você quer pagar?`}
 			</h1>
-			<section>
+			<section style={{ marginBottom: "0.5rem" }}>
 				<RadioGroupPayment />
 			</section>
 			<NextPageButton

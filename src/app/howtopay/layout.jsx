@@ -20,9 +20,13 @@ export default function RootLayout({ children }) {
 					alignItems: "center",
 				}}
 			>
-				<WooviLogo />
+				<div style={{ marginTop: "3px", marginBottom: "3px" }}>
+					<WooviLogo />
+				</div>
 				{children}
-				<Footer />
+				<div>
+					<Footer style={{ marginTop: "27px", marginBottom: "307px" }} />
+				</div>
 			</body>
 		</html>
 	);
