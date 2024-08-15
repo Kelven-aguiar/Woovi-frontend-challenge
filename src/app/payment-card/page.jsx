@@ -2,7 +2,7 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { PaymentContext } from "../contexts/paymentContext";
-import Progress from "../components/progress";
+import Progress from "../components/Progress";
 import InputMask from "react-input-mask";
 import FinishModal from "../components/FinishModal";
 

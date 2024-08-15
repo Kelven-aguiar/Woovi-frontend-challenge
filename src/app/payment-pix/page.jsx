@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useContext } from "react";
 import qrcode from "../../assets/qrcode.svg";
-import Progress from "../components/progress";
+import Progress from "../components/Progress";
 import NextPageButton from "../components/NextPageButton";
 import { PaymentContext } from "../contexts/paymentContext";
 
