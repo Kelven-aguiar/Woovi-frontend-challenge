@@ -1,5 +1,5 @@
 import Image from "next/image";
-import WooviLogo from "./WooviLogo";
+import WooviLogo from "./WooviLogotemp";
 import VerifiedSeal from "../../assets/verifiedSeal.svg";
 
 export default function Footer() {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Box, Typography } from "@mui/material";
-import WooviLogo from "./WooviLogo";
+import WooviLogo from "./WooviLogotemp";
 
 const FinishModal = ({ open, onClose }) => {
 	return (

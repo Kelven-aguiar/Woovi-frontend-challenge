@@ -1,6 +1,6 @@
 import { Nunito } from "next/font/google";
-import WooviLogo from "../components/WooviLogo";
-import Footer from "../components/Footer";
+import WooviLogo from "../components/WooviLogotemp";
+import Footer from "../components/Footertemp";
 
 const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" });
 

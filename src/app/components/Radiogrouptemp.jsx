@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext, useEffect } from "react";
 import { PaymentContext } from "../contexts/paymentContext";
-import Blueflag from "./Blueflag";
+import Blueflag from "./Blueflagtemp";
 import {
 	RadioGroup,
 	FormControlLabel,
