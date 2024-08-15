@@ -1,5 +1,5 @@
 "use client";
-import Checkedline from "../components/checkline";
+import Checkedline from "../components/Checkline";
 import { useContext } from "react";
 import { PaymentContext } from "../contexts/paymentContext";
 import Accordion from "../components/CustomAccordion";
