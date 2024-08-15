@@ -49,15 +49,14 @@ export default function Progress() {
 				<div
 					style={{
 						display: "flex",
-						justifyContent: "space-between", // Alinha os elementos nos extremos opostos
+						justifyContent: "space-between",
 						alignItems: "center",
-						width: "100%", // Garante que ocupem a largura total do container
+						width: "100%",
 					}}
 				>
 					<div style={{ display: "flex", alignItems: "center" }}>
 						<Checkpoint />
 						<dt style={{ marginLeft: "8px" }}>1ª entrada no Pix</dt>{" "}
-						{/* Espaço entre Checkpoint e dt */}
 					</div>
 					<dd>
 						{installments.toLocaleString("pt-BR", {
