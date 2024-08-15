@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Image from "next/image";
 import copyIcon from "../../assets/copy.svg";
-import CustomModal from "./CustomModal";
+import CustomModal from "./PixModal";
 import { PaymentContext } from "../contexts/paymentContext";
 
 export default function NextPageButton({ path, content, icon, type }) {
@@ -31,39 +31,37 @@ export default function NextPageButton({ path, content, icon, type }) {
 				alt="copy"
 				width={19}
 				height={22}
-				style={{ marginLeft: "8px" }}
+				style={{ marginLeft: "8px", verticalAlign: "middle" }}
 			/>
 		) : icon === "arrow" ? (
-			<ArrowRightIcon style={{ marginLeft: "8px" }} />
+			<ArrowRightIcon style={{ marginLeft: "8px", verticalAlign: "middle" }} />
 		) : null;
 
 	return (
-		<>
+		<div>
 			<Button
 				onClick={handleClick}
 				variant="contained"
 				sx={{
 					borderRadius: "8px",
 					backgroundColor: "#133A6F",
+					display: "inline-flex",
+					alignItems: "center",
+					justifyContent: "center",
 					"&:hover": {
 						backgroundColor: "#0C2750",
 					},
+					padding: "8px 16px",
+					fontSize: "16px",
+					lineHeight: "24px",
 				}}
 			>
-				<span
-					style={{
-						display: "flex",
-						alignItems: "center",
-						justifyContent: "center",
-						textAlign: "center",
-					}}
-				>
-					{content} {renderIcon()}
-				</span>
+				<span style={{ verticalAlign: "middle" }}>{content}</span>
+				{renderIcon()}
 			</Button>
 			{type === "trigger" && (
 				<CustomModal open={open} onClose={() => setOpen(false)} />
 			)}
-		</>
+		</div>
 	);
 }

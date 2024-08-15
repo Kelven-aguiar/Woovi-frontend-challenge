@@ -3,6 +3,7 @@ import Checkedline from "../components/checkline";
 import { useContext } from "react";
 import { PaymentContext } from "../contexts/paymentContext";
 import Accordion from "../components/CustomAccordion";
+import Checkpoint from "./Checkpoint";
 
 const getUpdatedDateTime = () => {
 	const hours = new Date();
@@ -18,7 +19,7 @@ const getUpdatedDateTime = () => {
 
 export default function Progress() {
 	const { paymentData } = useContext(PaymentContext);
-	const { installments, total, identifier, rest } = paymentData;
+	const { installments, total, identifier, rest, value } = paymentData;
 	const updatedDateTime = getUpdatedDateTime();
 
 	return (
@@ -44,49 +45,71 @@ export default function Progress() {
 					{updatedDateTime}
 				</div>
 			</article>
-
-			<div
-				className="esta div"
-				style={{
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-				}}
-			>
-				<Checkedline />
-				<div>
-					<dl
-						style={{
-							display: "flex",
-							justifyContent: "center",
-							marginBottom: "12px",
-						}}
-					>
-						<dt>1ª entrada no Pix</dt>
-						<dd style={{ marginLeft: "auto" }}>
-							{installments.toLocaleString("pt-BR", {
-								style: "currency",
-								currency: "BRL",
-							})}
-						</dd>
-					</dl>
-					<dl
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							width: "400px",
-						}}
-					>
-						<dt>2º no cartão</dt>
-						<dd style={{ marginLeft: "8px" }}>
-							{rest.toLocaleString("pt-BR", {
-								style: "currency",
-								currency: "BRL",
-							})}
-						</dd>
-					</dl>
+			{value === "1x" ? (
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "space-between", // Alinha os elementos nos extremos opostos
+						alignItems: "center",
+						width: "100%", // Garante que ocupem a largura total do container
+					}}
+				>
+					<div style={{ display: "flex", alignItems: "center" }}>
+						<Checkpoint />
+						<dt style={{ marginLeft: "8px" }}>1ª entrada no Pix</dt>{" "}
+						{/* Espaço entre Checkpoint e dt */}
+					</div>
+					<dd>
+						{installments.toLocaleString("pt-BR", {
+							style: "currency",
+							currency: "BRL",
+						})}
+					</dd>
 				</div>
-			</div>
+			) : (
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+					}}
+				>
+					<Checkedline />
+					<div>
+						<dl
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								marginBottom: "12px",
+							}}
+						>
+							<dt>1ª entrada no Pix</dt>
+							<dd style={{ marginLeft: "auto" }}>
+								{installments.toLocaleString("pt-BR", {
+									style: "currency",
+									currency: "BRL",
+								})}
+							</dd>
+						</dl>
+						<dl
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								width: "400px",
+							}}
+						>
+							<dt>2º no cartão</dt>
+							<dd style={{ marginLeft: "8px" }}>
+								{rest.toLocaleString("pt-BR", {
+									style: "currency",
+									currency: "BRL",
+								})}
+							</dd>
+						</dl>
+					</div>
+				</div>
+			)}
+
 			<hr
 				style={{
 					width: "100%",
@@ -124,10 +147,15 @@ export default function Progress() {
 				>
 					<p>
 						Total:{" "}
-						{total.toLocaleString("pt-BR", {
-							style: "currency",
-							currency: "BRL",
-						})}
+						{value === "1x"
+							? installments.toLocaleString("pt-BR", {
+									style: "currency",
+									currency: "BRL",
+								})
+							: total.toLocaleString("pt-BR", {
+									style: "currency",
+									currency: "BRL",
+								})}
 					</p>
 				</div>
 			</div>
@@ -153,7 +181,7 @@ export default function Progress() {
 					textAlign: "center",
 				}}
 			>
-				<p
+				<div
 					style={{
 						fontWeight: "600",
 						fontSize: "14px",
@@ -162,7 +190,7 @@ export default function Progress() {
 					}}
 				>
 					Identificador
-				</p>
+				</div>
 				<div
 					style={{
 						fontWeight: "800",

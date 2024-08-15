@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { PaymentContext } from "../contexts/paymentContext";
 import Blueflag from "../components/blueflag";
 import {
@@ -57,6 +57,17 @@ const RadioGroupPayment = () => {
 	const [selectedValue, setSelectedValue] = React.useState("2x");
 	const { setPaymentData } = useContext(PaymentContext);
 
+	useEffect(() => {
+		const defaultOption = paymentOptions.find(
+			(option) => option.value === "2x",
+		);
+		setPaymentData({
+			value: defaultOption.value,
+			installments: defaultOption.installments,
+			total: defaultOption.total,
+		});
+	}, [setPaymentData]);
+
 	const handleChange = (event) => {
 		const selectedOption = paymentOptions.find(
 			(option) => option.value === event.target.value,
@@ -67,15 +78,6 @@ const RadioGroupPayment = () => {
 			installments: selectedOption.installments,
 			total: selectedOption.total,
 		});
-
-		localStorage.setItem(
-			"paymentData",
-			JSON.stringify({
-				value: selectedOption.value,
-				installments: selectedOption.installments,
-				total: selectedOption.total,
-			}),
-		);
 	};
 
 	return (

@@ -51,7 +51,7 @@ const Page = () => {
 					textAlign: "center",
 				}}
 			>
-				Escreva seu 1ºnome para continuar:
+				Escreva seu primeiro nome para continuar:
 			</Typography>
 
 			<TextField
