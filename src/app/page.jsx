@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { Box, TextField, Typography } from "@mui/material";
 import { PaymentContext } from "./contexts/paymentContext";
 import NextPageButton from "./components/NextPageButton";
-import WooviLogo from "./components/WooviLogotemp";
+import WooviLogo from "./components/WooviLogo";
 import ReportIcon from "@mui/icons-material/Report";
 
 const Page = () => {

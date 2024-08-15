@@ -2,7 +2,7 @@
 import React from "react";
 import { useContext } from "react";
 import { Modal, Box, Typography } from "@mui/material";
-import WooviLogo from "./WooviLogotemp";
+import WooviLogo from "./WooviLogo";
 import NextPageButton from "./NextPageButton";
 import { PaymentContext } from "../contexts/paymentContext";
 

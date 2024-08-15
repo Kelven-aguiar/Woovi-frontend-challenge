@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext } from "react";
-import RadioGroupPayment from "../components/Radiogrouptemp";
+import RadioGroupPayment from "../components/Radiogroup";
 import NextPageButton from "../components/NextPageButton";
 import { PaymentContext } from "../contexts/paymentContext";
 
