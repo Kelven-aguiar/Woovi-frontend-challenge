@@ -18,7 +18,9 @@ Recriar o design fornecido pela Woovi no Figma: [Woovi-Desafio-Front](https://ww
 Você pode acessar o projeto diretamente através do link:  
 **[woovi-frontend-challenge-kelvenaguiar.vercel.app](https://woovi-frontend-challenge-kelvenaguiar.vercel.app)**
 
-Ou, para rodar o projeto localmente, siga os passos abaixo:
+Ou
+
+Para rodar o projeto localmente, siga os passos abaixo:
 
 ### Clone o Repositório:
 bash
