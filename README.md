@@ -1,5 +1,8 @@
 # Simulação de pagamentos via pix e diferentes parcelas
 
+##Funcionalidade do Projeto  
+Esse projeto consta com a navegação entre páginas de pagamento e armazenando dados em um contexto. E com base nas decisões do usuário, são oferecidas diferentes opções de pagamento até a chegada no formulário de compra para coletar os dados do usuário
+
 ## Descrição do Projeto
 Este repositório contém a solução para o desafio proposto pela **Woovi**. O projeto foi desenvolvido para replicar o design fornecido, demonstrando habilidades em **React**, utilizando a biblioteca **MUI (Material-UI)** para criar uma interface responsiva **Mobile First**. O projeto é funcional e utiliza **useRouter** do Next para navegação entre páginas, e **React Context** para gerenciar o estado global da aplicação.
 
