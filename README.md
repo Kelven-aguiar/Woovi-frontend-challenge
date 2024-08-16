@@ -27,9 +27,9 @@ git clone https://github.com/seu-usuario/woovi-challenge.git
 
 Acesse o Diretório do Projeto:
 cd woovi-challenge
-Instale as Dependências
+Instale as Dependências: 
 npm install
-Inicie o Servidor de Desenvolvimento
+Inicie o Servidor de Desenvolvimento: 
 npm run dev
 
 Visualize o Projeto
