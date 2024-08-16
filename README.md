@@ -1,7 +1,7 @@
 # Simulação de pagamentos via pix e diferentes parcelas
 
 ## Descrição do Projeto
-Este repositório contém a solução para o desafio proposto pela **Woovi**. O projeto foi desenvolvido para replicar o design fornecido, demonstrando habilidades em **React**, utilizando a biblioteca **MUI (Material-UI)** para criar uma interface responsiva **Mobile First**. O projeto é funcional e utiliza **React Router** para navegação entre páginas, e **React Context** para gerenciar o estado global da aplicação.
+Este repositório contém a solução para o desafio proposto pela **Woovi**. O projeto foi desenvolvido para replicar o design fornecido, demonstrando habilidades em **React**, utilizando a biblioteca **MUI (Material-UI)** para criar uma interface responsiva **Mobile First**. O projeto é funcional e utiliza **useRouter** do Next para navegação entre páginas, e **React Context** para gerenciar o estado global da aplicação.
 
 ## Objetivo do Desafio
 Recriar o design fornecido pela Woovi no Figma: [Woovi-Desafio-Front](https://www.figma.com/design/hv1LgD7oNrtlmfWgKBG6PF/Woovi-Desafio-Front?node-id=0-1&t=E3GdukMimd3q91j2-0), atendendo aos seguintes requisitos:
