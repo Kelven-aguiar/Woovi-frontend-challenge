@@ -1,6 +1,6 @@
 # Simulação de pagamentos via pix e diferentes parcelas
 
-##Funcionalidade do Projeto  
+## Funcionalidade do Projeto
 Esse projeto consta com a navegação entre páginas de pagamento e armazenando dados em um contexto. E com base nas decisões do usuário, são oferecidas diferentes opções de pagamento até a chegada no formulário de compra para coletar os dados do usuário
 
 ## Descrição do Projeto
