@@ -23,25 +23,18 @@ Ou
 Para rodar o projeto localmente, siga os passos abaixo:
 
 ### Clone o Repositório:
-bash
+
 git clone https://github.com/seu-usuario/woovi-challenge.git
 
 git clone https://github.com/seu-usuario/woovi-challenge.git
+
 Acesse o Diretório do Projeto
-
-bash
-Copiar código
 cd woovi-challenge
 Instale as Dependências
-
-bash
-Copiar código
 npm install
 Inicie o Servidor de Desenvolvimento
-
-bash
-Copiar código
 npm start
+
 Visualize o Projeto
 
 Abra o navegador e acesse http://localhost:3000 para ver o projeto em execução.
