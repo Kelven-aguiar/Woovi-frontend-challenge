@@ -1,4 +1,4 @@
-# Woovi Challenge
+# Simulação de pagamentos via pix e diferentes parcelas
 
 ## Descrição do Projeto
 Este repositório contém a solução para o desafio proposto pela **Woovi**. O projeto foi desenvolvido para replicar o design fornecido, demonstrando habilidades em **React** e utilizando a biblioteca **MUI (Material-UI)** para criar uma interface responsiva e funcional.
