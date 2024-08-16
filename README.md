@@ -9,7 +9,6 @@ Recriar o design fornecido pela Woovi no Figma: [Woovi-Desafio-Front](https://ww
 - **React**: Utilizar a biblioteca React para a construção da interface.
 - **Responsividade**: Assegurar que o design seja responsivo e funcione bem em dispositivos móveis.
 - **Biblioteca de UI**: Usar a MUI para criar uma interface moderna e consistente.
-- **Componentes da MUI**: Utilização de componentes da biblioteca MUI para uma interface moderna e acessível.
 - **Gerenciamento de Estado**: Implementação para gerenciar o estado da aplicação.
 - **Validação de Formulários**: Validação das entradas do usuário.
 
