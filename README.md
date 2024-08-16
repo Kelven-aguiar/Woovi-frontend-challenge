@@ -24,6 +24,7 @@ Recriar o design fornecido pela Woovi no Figma: [Woovi-Desafio-Front](https://ww
 ## Instruções para Executar o Projeto
 
 Você pode acessar o projeto diretamente através do link:  
+
 **[woovi-frontend-challenge-kelvenaguiar.vercel.app](https://woovi-frontend-challenge-kelvenaguiar.vercel.app)**
 
 Ou
